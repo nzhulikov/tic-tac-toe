@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d"
-        Title="Крестики-нолики" Height="350" Width="525">
-    <Grid>
+        ResizeMode="NoResize"
+        Title="Tic Tac Toe" Height="500" Width="500">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="5" />
+            <Setter Property="BorderBrush" Value="CadetBlue" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="80" />
+            <Setter Property="Foreground" Value="DarkSalmon" />
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Button x:Name="CellButton0_0" Grid.Row="0" Grid.Column="0" Click="ButtonClicked"/>
+        <Button x:Name="CellButton0_1" Grid.Row="0" Grid.Column="1" Click="ButtonClicked"/>
+        <Button x:Name="CellButton0_2" Grid.Row="0" Grid.Column="2" Click="ButtonClicked"/>
+        <Button x:Name="CellButton1_0" Grid.Row="1" Grid.Column="0" Click="ButtonClicked"/>
+        <Button x:Name="CellButton1_1" Grid.Row="1" Grid.Column="1" Click="ButtonClicked"/>
+        <Button x:Name="CellButton1_2" Grid.Row="1" Grid.Column="2" Click="ButtonClicked"/>
+        <Button x:Name="CellButton2_0" Grid.Row="2" Grid.Column="0" Click="ButtonClicked"/>
+        <Button x:Name="CellButton2_1" Grid.Row="2" Grid.Column="1" Click="ButtonClicked"/>
+        <Button x:Name="CellButton2_2" Grid.Row="2" Grid.Column="2" Click="ButtonClicked"/>
     </Grid>
 </Window>

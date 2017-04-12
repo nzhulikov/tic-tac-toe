@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\IGameEngine.cs" />
+    <Compile Include="Engine\Models\Board\GameBoardExtensions.cs" />
     <Compile Include="Engine\Models\Board\IGameBoard.cs" />
     <Compile Include="Engine\Players\IPlayer.cs" />
     <Compile Include="Engine\Players\HumanPlayer.cs" />

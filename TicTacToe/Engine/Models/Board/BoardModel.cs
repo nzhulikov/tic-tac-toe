@@ -4,7 +4,7 @@ using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.Models.Board
 {
-    internal class BoardModel : IGameBoard
+    public class BoardModel : IGameBoard
     {
         private MarkType[,] board;
 
@@ -20,6 +20,12 @@ namespace TicTacToe.Engine.Models.Board
             RowsCount = boardLength;
             ColsCount = boardLength;
             InitializeBoard();
+        }
+
+        public MarkType this[int row, int col]
+        {
+            get => GetMark(row, col);
+            set => SetMark(row, col, value);
         }
 
         public void SetMark(int row, int col, MarkType mark)
@@ -43,6 +49,31 @@ namespace TicTacToe.Engine.Models.Board
         {
             board = new MarkType[RowsCount, ColsCount];
             Clear();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            return Equals(obj as IGameBoard);
+        }
+
+        public bool Equals(IGameBoard board)
+        {
+            if (board == null)
+                return false;
+
+            if (board.ColsCount != ColsCount ||
+                board.RowsCount != RowsCount)
+                return false;
+
+            bool areEqual = true;
+            for (int i = 0; i < RowsCount; i++)
+                for (int j = 0; j < ColsCount; j++)
+                    areEqual = areEqual & this[i, j] != board[i, j];
+
+            return areEqual;
         }
     }
 }

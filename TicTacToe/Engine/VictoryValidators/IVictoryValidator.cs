@@ -9,6 +9,6 @@ namespace TicTacToe.Engine.VictoryValidators
 {
     internal interface IVictoryValidator
     {
-        bool Check(IList<IList<Enums.MarkType>> board, Enums.MarkType checkMark);
+        bool Check(Enums.MarkType[,] board, Enums.MarkType checkMark);
     }
 }

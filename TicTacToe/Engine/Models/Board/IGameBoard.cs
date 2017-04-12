@@ -6,7 +6,7 @@ namespace TicTacToe.Engine.Models.Board
     /// <summary>
     /// Интерфейс игровой доски
     /// </summary>
-    internal interface IGameBoard
+    public interface IGameBoard
     {
         /// <summary>
         /// Количество строк
@@ -17,6 +17,8 @@ namespace TicTacToe.Engine.Models.Board
         /// Количество столбцов
         /// </summary>
         int ColsCount { get; }
+
+        MarkType this[int row, int col] { get; set; }
 
         /// <summary>
         /// Пометить указанную клетку
@@ -38,5 +40,8 @@ namespace TicTacToe.Engine.Models.Board
         /// Очистить игровое поле
         /// </summary>
         void Clear();
+
+        bool Equals(object board);
+        bool Equals(IGameBoard board);
     }
 }

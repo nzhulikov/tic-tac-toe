@@ -5,7 +5,7 @@ namespace TicTacToe.Engine
 {
     internal interface IGameEngine
     {
-        IGameBoard NewGame(int boardLength);
+        IGameBoard NewGame();
         PlayResponse Play(PlayRequest request);
     }
 }

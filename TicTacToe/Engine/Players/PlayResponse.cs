@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.Players
 {
     public class PlayResponse
     {
-        public IList<IList<Enums.MarkType>> Board { get; set; }
+        public MarkType[,] Board { get; set; }
         public bool PlayerWon { get; set; }
     }
 }

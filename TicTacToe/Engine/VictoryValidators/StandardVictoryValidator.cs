@@ -3,28 +3,56 @@ using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.VictoryValidators
 {
-    class StandardVictoryValidator : IVictoryValidator
+    public class StandardVictoryValidator : IVictoryValidator
     {
-        public bool Check(IList<IList<MarkType>> board, MarkType checkMark)
+        public int WinningCount { get; set; } = 3;
+
+        public bool Check(MarkType[,] board, MarkType checkMark)
         {
-            bool CheckVertical()
+            int[] countVertical = new int[board.GetLength(0)];
+            int[] countHorizontal = new int[board.GetLength(1)];
+            int countDiagonal = 0;
+            int countReversedDiagonal = 0;
+
+            // Алгоритм поиска решения с использованием однократного прохода
+            for (int i = 0;
+                i < board.GetLength(0);
+                i++)
             {
-                return false;
+                for (int j = 0;
+                    j < board.GetLength(1);
+                    j++)
+                {
+                    if (board[i, j].Equals(checkMark))
+                    {
+                        countHorizontal[i]++;
+                        countVertical[j]++;
+                    }
+                    else
+                    {
+                        countHorizontal[i] = 0;
+                        countVertical[j] = 0;
+                    }
+
+                    if (countHorizontal[i] == WinningCount || countVertical[j] == WinningCount)
+                        return true;
+                }
+
+                if (board[i, i].Equals(checkMark))
+                    countDiagonal++;
+                else
+                    countDiagonal = 0;
+
+                if (board[(board.GetLength(0) - 1) - i, i].Equals(checkMark))
+                    countReversedDiagonal++;
+                else
+                    countReversedDiagonal = 0;
+
+                if (countDiagonal == WinningCount || countReversedDiagonal == WinningCount)
+                    return true;
             }
 
-            bool CheckHorizontal()
-            {
-                return false;
-            }
-
-            bool CheckDiagonals()
-            {
-                return false;
-            }
-
-            return CheckVertical() || 
-                CheckHorizontal() ||
-                CheckDiagonals();
+            return false;
         }
     }
 }

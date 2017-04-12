@@ -1,7 +1,4 @@
-﻿using TicTacToe.Engine;
-using System.Windows.Input;
-
-namespace TicTacToe.ViewModels
+﻿namespace TicTacToe.ViewModels
 {
     public class GameWindowViewModel
     {

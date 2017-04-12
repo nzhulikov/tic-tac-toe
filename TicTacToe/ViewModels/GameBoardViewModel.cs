@@ -11,12 +11,14 @@ namespace TicTacToe.ViewModels
         private GameControlsViewModel _controls;
         private ObservableCollection<ObservableCollection<MarkType>> ticTacToeBoard;
 
-        public ICommand MakeMoveCommand { get; private set; }
         public bool PlayerWon { get; private set; }
 
-        internal GameBoardViewModel(GameControlsViewModel _controls)
+        public ICommand MakeMoveCommand { get; private set; }
+
+        public GameBoardViewModel(GameControlsViewModel gameControlsViewModel)
         {
-            PlayerWon = false;
+            this._controls = gameControlsViewModel;
+            this.PlayerWon = false;
         }
 
         private void InitializeTicTacToeBoard(IGameBoard boardModel)

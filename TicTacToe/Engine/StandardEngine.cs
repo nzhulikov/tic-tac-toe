@@ -5,7 +5,7 @@ using TicTacToe.Engine.VictoryValidators;
 
 namespace TicTacToe.Engine
 {
-    internal class StandardEngine : IGameEngine
+    public class StandardEngine : IGameEngine
     {
         private IVictoryValidator victoryValidator;
 
@@ -28,12 +28,12 @@ namespace TicTacToe.Engine
             return response;
         }
 
-        public IGameBoard NewGame(int boardLength)
+        public IGameBoard NewGame()
         {
             firstPlayer = new HumanPlayer(Enums.MarkType.Cross);
             secondPlayer = new HumanPlayer(Enums.MarkType.Nought);
             currentPlayer = firstPlayer;
-            return new BoardModel(boardLength);
+            return new BoardModel(3);
         }
     }
 }

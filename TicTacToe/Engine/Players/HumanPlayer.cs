@@ -18,7 +18,7 @@ namespace TicTacToe.Engine.Players
 
             if (CanPlay(request))
             {
-                request.Board[request.Row][request.Col] = Mark;
+                request.Board[request.Row, request.Col] = Mark;
                 response.Board = request.Board;
             }
 
@@ -27,6 +27,6 @@ namespace TicTacToe.Engine.Players
             return response;
         }
 
-        public bool CanPlay(PlayRequest request) => request.Board[request.Row][request.Col] == MarkType.None;
+        public bool CanPlay(PlayRequest request) => request.Board[request.Row, request.Col] == MarkType.None;
     }
 }

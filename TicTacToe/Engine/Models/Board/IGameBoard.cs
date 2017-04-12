@@ -4,7 +4,7 @@ using TicTacToe.Engine.Enums;
 namespace TicTacToe.Engine.Models.Board
 {
     /// <summary>
-    /// Интерфейс игровой доски
+    /// Интерфейс игрового поля
     /// </summary>
     public interface IGameBoard
     {
@@ -18,6 +18,11 @@ namespace TicTacToe.Engine.Models.Board
         /// </summary>
         int ColsCount { get; }
 
+        /// <summary>
+        /// Индексер для доступа к клеткам игрового поля
+        /// </summary>
+        /// <param name="row">Строка</param>
+        /// <param name="col">Столбец</param>
         MarkType this[int row, int col] { get; set; }
 
         /// <summary>
@@ -40,8 +45,5 @@ namespace TicTacToe.Engine.Models.Board
         /// Очистить игровое поле
         /// </summary>
         void Clear();
-
-        bool Equals(object board);
-        bool Equals(IGameBoard board);
     }
 }

@@ -4,7 +4,10 @@ using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.Models.Board
 {
-    public class BoardModel : IGameBoard
+    /// <summary>
+    /// Квадратное игровое поле
+    /// </summary>
+    public class SquareBoard : IGameBoard
     {
         private MarkType[,] board;
 
@@ -15,7 +18,7 @@ namespace TicTacToe.Engine.Models.Board
         /// Конструктор квадратного игрового поля
         /// </summary>
         /// <param name="boardLength">Длина поля</param>
-        public BoardModel(int boardLength)
+        public SquareBoard(int boardLength)
         {
             RowsCount = boardLength;
             ColsCount = boardLength;
@@ -49,31 +52,6 @@ namespace TicTacToe.Engine.Models.Board
         {
             board = new MarkType[RowsCount, ColsCount];
             Clear();
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-
-            return Equals(obj as IGameBoard);
-        }
-
-        public bool Equals(IGameBoard board)
-        {
-            if (board == null)
-                return false;
-
-            if (board.ColsCount != ColsCount ||
-                board.RowsCount != RowsCount)
-                return false;
-
-            bool areEqual = true;
-            for (int i = 0; i < RowsCount; i++)
-                for (int j = 0; j < ColsCount; j++)
-                    areEqual = areEqual & this[i, j] != board[i, j];
-
-            return areEqual;
         }
     }
 }

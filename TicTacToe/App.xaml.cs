@@ -1,12 +1,14 @@
-﻿using System;
-using TicTacToe.Engine;
+﻿using TicTacToe.Engine;
+using System.Windows;
 
 namespace TicTacToe
 {
-    public class Program
+    /// <summary>
+    /// Логика взаимодействия для App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-        [STAThread]
-        public static void Main(string[] args)
+        public App()
         {
             ViewModels.GameWindowViewModel gameWindowViewModel = new ViewModels.GameWindowViewModel();
             Views.TicTacToeGameWindow gameWindow = new Views.TicTacToeGameWindow(gameWindowViewModel);

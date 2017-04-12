@@ -5,6 +5,9 @@ using TicTacToe.Engine.VictoryValidators;
 
 namespace TicTacToe.Engine
 {
+    /// <summary>
+    /// Игровая логика для стандартной игры в крестики-нолики на поле 3 на 3
+    /// </summary>
     public class StandardEngine : IGameEngine
     {
         private IVictoryValidator victoryValidator;
@@ -33,7 +36,7 @@ namespace TicTacToe.Engine
             firstPlayer = new HumanPlayer(Enums.MarkType.Cross);
             secondPlayer = new HumanPlayer(Enums.MarkType.Nought);
             currentPlayer = firstPlayer;
-            return new BoardModel(3);
+            return new SquareBoard(3);
         }
     }
 }

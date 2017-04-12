@@ -3,6 +3,9 @@ using TicTacToe.Engine.VictoryValidators;
 
 namespace TicTacToe.Engine.Players
 {
+    /// <summary>
+    /// Игрок-человек
+    /// </summary>
     internal class HumanPlayer : IPlayer
     {
         public MarkType Mark { get; set; }

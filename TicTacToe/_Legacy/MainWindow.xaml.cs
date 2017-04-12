@@ -55,8 +55,8 @@ namespace TicTacToe
         // Новая игра
         private void NewGame()
         {
-            crossPlayer = new Player("Крестики", CellMark.Cross);
-            noughtPlayer = new Player("Нолики", CellMark.Nought);
+            crossPlayer = new Player("Крестики", MarkType.Cross);
+            noughtPlayer = new Player("Нолики", MarkType.Nought);
 
             NewMatch();
         }
@@ -65,7 +65,7 @@ namespace TicTacToe
         private void NewMatch()
         {
             currentMatch = new GameMatch(3 , 3);
-            currentMatch.GameOver += OnMatchOver;
+            currentMatch.MatchOver += OnMatchOver;
             CurrentPlayer = crossPlayer;
             ClearView();
         }
@@ -81,13 +81,13 @@ namespace TicTacToe
         private string GetContent(int row, int col) => MarkToString(currentMatch.GetMark(row, col));
 
         // Преобразовать значение отметки в строку для отображения
-        private string MarkToString(CellMark mark)
+        private string MarkToString(MarkType mark)
         {
             switch (mark)
             {
-                case CellMark.Cross:
+                case MarkType.Cross:
                     return "X";
-                case CellMark.Nought:
+                case MarkType.Nought:
                     return "O";
                 default:
                     return String.Empty;
@@ -107,13 +107,13 @@ namespace TicTacToe
         {
             switch (gameEvent.Winner)
             {
-                case CellMark.Cross:
+                case MarkType.Cross:
                     MessageBox.Show($"Игрок {crossPlayer.Name} победил!");
                     break;
-                case CellMark.Nought:
+                case MarkType.Nought:
                     MessageBox.Show($"Игрок {noughtPlayer.Name} победил!");
                     break;
-                case CellMark.None:
+                case MarkType.None:
                     MessageBox.Show($"Ничья.");
                     break;
             }
@@ -125,7 +125,7 @@ namespace TicTacToe
         private void ClearView()
         {
             foreach (var btn in MainGrid.Children.OfType<Button>())
-                btn.Content = MarkToString(CellMark.None);
+                btn.Content = MarkToString(MarkType.None);
         }
     }
 }

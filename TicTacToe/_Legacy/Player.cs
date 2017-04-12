@@ -8,7 +8,7 @@
         /// <summary>
         /// Отметка игрока
         /// </summary>
-        public CellMark Mark { get; private set; }
+        public MarkType Mark { get; private set; }
 
         /// <summary>
         /// Имя игрока
@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="name">Имя игрока</param>
         /// <param name="mark">Отметка игрока</param>
-        public Player(string name, CellMark mark)
+        public Player(string name, MarkType mark)
         {
             this.Name = name;
             this.Mark = mark;

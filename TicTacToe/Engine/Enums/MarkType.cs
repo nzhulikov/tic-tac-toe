@@ -1,9 +1,9 @@
-﻿namespace TicTacToe
+﻿namespace TicTacToe.Engine.Enums
 {
     /// <summary>
     /// Отметка в клетке на поле игры Крестики-нолики
     /// </summary>
-    public enum CellMark
+    public enum MarkType
     {
         /// <summary>
         /// Пустая клетка

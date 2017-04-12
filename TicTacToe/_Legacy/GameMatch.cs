@@ -1,4 +1,6 @@
-﻿namespace TicTacToe
+﻿using System;
+
+namespace TicTacToe
 {
     /// <summary>
     /// Игровой матч в крестики-нолики
@@ -10,12 +12,12 @@
         /// </summary>
         /// <param name="sender">Законившийся матч</param>
         /// <param name="gameEvent">Данные о матче</param>
-        public delegate void GameOverEvent(GameMatch sender, GameOverEventArgs gameEvent);
+        public delegate void MatchOverEvent(GameMatch sender, GameOverEventArgs gameEvent);
 
         /// <summary>
         /// Событие конца матча
         /// </summary>
-        public event GameOverEvent GameOver;
+        public event MatchOverEvent MatchOver;
 
         /// <summary>
         /// Длина игрового поля
@@ -28,7 +30,7 @@
         public int WinningCount { get; private set; }
 
         // Игровое поле
-        private CellMark[] state;
+        private MarkType[] state;
 
         // Счетчик ходов
         private int countMoves;
@@ -53,19 +55,19 @@
         /// <param name="col">Колонка</param>
         /// <param name="mark">Отметка</param>
         /// <returns>Возвращает true, если клетка была отмечена</returns>
-        /// <seealso cref="GameOver"/>
-        public bool SetMark(int row, int col, CellMark mark)
+        /// <seealso cref="MatchOver"/>
+        public bool SetMark(int row, int col, MarkType mark)
         {
-            if (this.state[GetIndex(row, col)] != CellMark.None)
+            if (this.state[GetIndex(row, col)] != MarkType.None)
                 return false;
 
             this.state[GetIndex(row, col)] = mark;
             countMoves++;
 
             if (CheckCombinations(row, col))
-                GameOver?.Invoke(this, new GameOverEventArgs(mark));
+                MatchOver?.Invoke(this, new GameOverEventArgs(mark));
             else if (countMoves == state.Length)
-                GameOver?.Invoke(this, new GameOverEventArgs(CellMark.None));
+                MatchOver?.Invoke(this, new GameOverEventArgs(MarkType.None));
 
             return true;
         }
@@ -76,7 +78,7 @@
         /// <param name="row">Строка</param>
         /// <param name="col">Колонка</param>
         /// <returns>Отметка клетки</returns>
-        public CellMark GetMark(int row, int col) => state[GetIndex(row, col)];
+        public MarkType GetMark(int row, int col) => state[GetIndex(row, col)];
 
         /// <summary>
         /// Проверить комбинации для указанной клетки
@@ -98,12 +100,12 @@
         /// Создаёт поле, заполненное клетками без отметок.
         /// </summary>
         /// <returns>Пустое игровое поле</returns>
-        /// <seealso cref="CellMark.None"/>
-        private CellMark[] CreateEmptyState()
+        /// <seealso cref="MarkType.None"/>
+        private MarkType[] CreateEmptyState()
         {
-            var clearState = new CellMark[Side * Side];
+            var clearState = new MarkType[Side * Side];
             for (int i = 0; i < clearState.Length; i++)
-                clearState[i] = CellMark.None;
+                clearState[i] = MarkType.None;
             return clearState;
         }
 

@@ -50,28 +50,37 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="Engine\IGameEngine.cs" />
+    <Compile Include="Engine\Models\Board\IGameBoard.cs" />
+    <Compile Include="Engine\Players\IPlayer.cs" />
+    <Compile Include="Engine\Players\HumanPlayer.cs" />
+    <Compile Include="Engine\Players\PlayRequest.cs" />
+    <Compile Include="Engine\Players\PlayResponse.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Engine\StandardEngine.cs" />
+    <Compile Include="Engine\VictoryValidators\IVictoryValidator.cs" />
+    <Compile Include="Engine\VictoryValidators\StandardVictoryValidator.cs" />
+    <Compile Include="ViewModels\GameControlsViewModel.cs" />
+    <Compile Include="ViewModels\GameWindowViewModel.cs" />
+    <Compile Include="ViewModels\GameBoardViewModel.cs" />
+    <Compile Include="Views\GameWindowView.xaml.cs">
+      <DependentUpon>GameWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameBoardView.xaml.cs">
+      <DependentUpon>GameBoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Engine\Enums\MarkType.cs" />
+    <Page Include="Views\GameWindowView.xaml">
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CellMark.cs" />
-    <Compile Include="GameOverEventArgs.cs" />
-    <Compile Include="GameMatch.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Views\GameBoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player.cs" />
+    <Compile Include="Engine\Models\Board\BoardModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,8 +104,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Folder Include="Converters\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

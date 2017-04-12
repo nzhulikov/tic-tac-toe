@@ -14,13 +14,13 @@ namespace TicTacToe
         /// <summary>
         /// Победитель
         /// </summary>
-        public CellMark Winner { get; private set; }
+        public MarkType Winner { get; private set; }
 
         /// <summary>
         /// Конструктор-инициализатор
         /// </summary>
         /// <param name="winner">Победитель</param>
-        public GameOverEventArgs(CellMark winner)
+        public GameOverEventArgs(MarkType winner)
         {
             this.Winner = winner;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.VictoryValidators
@@ -7,8 +8,9 @@ namespace TicTacToe.Engine.VictoryValidators
     {
         public int WinningCount { get; set; } = 3;
 
-        public bool Check(MarkType[,] board, MarkType checkMark)
+        public GameState Check(MarkType[,] board, MarkType checkMark)
         {
+            bool isDraw = true;
             int[] countVertical = new int[board.GetLength(0)];
             int[] countHorizontal = new int[board.GetLength(1)];
             int countDiagonal = 0;
@@ -28,6 +30,10 @@ namespace TicTacToe.Engine.VictoryValidators
                         countHorizontal[i]++;
                         countVertical[j]++;
                     }
+                    else if (isDraw && board[i, j] == MarkType.None)
+                    {
+                        isDraw = false;
+                    }
                     else
                     {
                         countHorizontal[i] = 0;
@@ -35,7 +41,7 @@ namespace TicTacToe.Engine.VictoryValidators
                     }
 
                     if (countHorizontal[i] == WinningCount || countVertical[j] == WinningCount)
-                        return true;
+                        return GameState.Victory;
                 }
 
                 if (board[i, i].Equals(checkMark))
@@ -49,10 +55,10 @@ namespace TicTacToe.Engine.VictoryValidators
                     countReversedDiagonal = 0;
 
                 if (countDiagonal == WinningCount || countReversedDiagonal == WinningCount)
-                    return true;
+                    return GameState.Victory;
             }
 
-            return false;
+            return isDraw ? GameState.Draw : GameState.Playing;
         }
     }
 }

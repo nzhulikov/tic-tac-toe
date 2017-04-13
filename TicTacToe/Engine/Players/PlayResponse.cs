@@ -15,6 +15,11 @@ namespace TicTacToe.Engine.Players
         /// <summary>
         /// Проверка, победил ли игрок, запросивший ход
         /// </summary>
-        public bool PlayerWon { get; set; }
+        public GameState Result { get; set; }
+
+        /// <summary>
+        /// Проверка, валидный ли был ход в запросе
+        /// </summary>
+        public bool IsValidMove { get; set; }
     }
 }

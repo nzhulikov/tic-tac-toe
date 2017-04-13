@@ -18,9 +18,9 @@ namespace TicTacToe.Views
     /// <summary>
     /// Логика взаимодействия для TicTacToeGridView.xaml
     /// </summary>
-    public partial class TicTacToeGridView : UserControl
+    public partial class GameBoardView : UserControl
     {
-        public TicTacToeGridView()
+        public GameBoardView()
         {
             InitializeComponent();
         }

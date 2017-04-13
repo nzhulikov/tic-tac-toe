@@ -1,4 +1,7 @@
-﻿namespace TicTacToe.ViewModels
+﻿using System.ComponentModel;
+using TicTacToe.Engine;
+
+namespace TicTacToe.ViewModels
 {
     public class GameWindowViewModel
     {
@@ -8,7 +11,7 @@
         internal GameWindowViewModel()
         {
             this.GameControlsViewModel = new GameControlsViewModel();
-            this.GameBoardViewModel = new GameBoardViewModel(GameControlsViewModel);
+            this.GameBoardViewModel = new GameBoardViewModel(this.GameControlsViewModel);
         }
     }
 }

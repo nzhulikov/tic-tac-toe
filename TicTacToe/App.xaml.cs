@@ -11,7 +11,7 @@ namespace TicTacToe
         public App()
         {
             ViewModels.GameWindowViewModel gameWindowViewModel = new ViewModels.GameWindowViewModel();
-            Views.TicTacToeGameWindow gameWindow = new Views.TicTacToeGameWindow(gameWindowViewModel);
+            Views.GameWindowView gameWindow = new Views.GameWindowView(gameWindowViewModel);
             gameWindow.ShowDialog();
         }
     }

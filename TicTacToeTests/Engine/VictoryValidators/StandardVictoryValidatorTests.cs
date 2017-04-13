@@ -38,8 +38,8 @@ namespace TicTacToeTests
 
             foreach (var board in boards)
             {
-                Assert.IsTrue(target.Check(board, MarkType.Cross));
-                Assert.IsFalse(target.Check(board, MarkType.Nought));
+                Assert.IsTrue(target.Check(board, MarkType.Cross) == GameState.Victory);
+                Assert.IsFalse(target.Check(board, MarkType.Nought) == GameState.Victory);
             }
         }
 
@@ -71,8 +71,8 @@ namespace TicTacToeTests
 
             foreach (var board in boards)
             {
-                Assert.IsTrue(target.Check(board, MarkType.Cross));
-                Assert.IsFalse(target.Check(board, MarkType.Nought));
+                Assert.IsTrue(target.Check(board, MarkType.Cross) == GameState.Victory);
+                Assert.IsFalse(target.Check(board, MarkType.Nought) == GameState.Victory);
             }
         }
 
@@ -98,9 +98,25 @@ namespace TicTacToeTests
 
             foreach (var board in boards)
             {
-                Assert.IsTrue(target.Check(board, MarkType.Cross));
-                Assert.IsFalse(target.Check(board, MarkType.Nought));
+                Assert.IsTrue(target.Check(board, MarkType.Cross) == GameState.Victory);
+                Assert.IsFalse(target.Check(board, MarkType.Nought) == GameState.Victory);
             }
+        }
+
+        [TestMethod]
+        public void TestCheck_Draw()
+        {
+            target = new StandardVictoryValidator();
+
+            var board = new MarkType[,]
+            {
+                { MarkType.Cross, MarkType.Nought, MarkType.Cross },
+                { MarkType.Cross, MarkType.Nought, MarkType.Cross },
+                { MarkType.Nought, MarkType.Cross, MarkType.Nought }
+            };
+
+            Assert.IsTrue(target.Check(board, MarkType.Cross) == GameState.Draw);
+            Assert.IsTrue(target.Check(board, MarkType.Nought) == GameState.Draw);
         }
     }
 }

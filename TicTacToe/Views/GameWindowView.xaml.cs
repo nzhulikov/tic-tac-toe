@@ -17,9 +17,9 @@ namespace TicTacToe.Views
     /// <summary>
     /// Логика взаимодействия для TicTacToeGameWindow.xaml
     /// </summary>
-    public partial class TicTacToeGameWindow : Window
+    public partial class GameWindowView : Window
     {
-        public TicTacToeGameWindow(ViewModels.GameWindowViewModel gameWindowViewModel)
+        public GameWindowView(ViewModels.GameWindowViewModel gameWindowViewModel)
         {
             DataContext = gameWindowViewModel;
             InitializeComponent();

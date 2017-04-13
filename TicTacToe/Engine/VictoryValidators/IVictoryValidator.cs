@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.VictoryValidators
 {
     internal interface IVictoryValidator
     {
-        bool Check(Enums.MarkType[,] board, Enums.MarkType checkMark);
+        GameState Check(Enums.MarkType[,] board, Enums.MarkType checkMark);
     }
 }

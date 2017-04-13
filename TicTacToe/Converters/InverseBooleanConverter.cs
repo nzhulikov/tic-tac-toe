@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace TicTacToe.Converters
 {
+    /// <summary>
+    /// Конвертер инверсии булевого значения
+    /// </summary>
     [ValueConversion(typeof(bool), typeof(bool))]
     internal class InverseBooleanConverter : IValueConverter
     {

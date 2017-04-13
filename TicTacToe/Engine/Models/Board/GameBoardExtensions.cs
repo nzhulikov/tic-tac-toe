@@ -2,8 +2,16 @@
 
 namespace TicTacToe.Engine.Models.Board
 {
+    /// <summary>
+    /// Расширения для объектов игрового поля
+    /// </summary>
     public static class GameBoardExtensions
     {
+        /// <summary>
+        /// Конвертация игрового поля в двумерный массив клеток
+        /// </summary>
+        /// <param name="board">Игровое поле</param>
+        /// <returns>Двумерный массив клеток</returns>
         public static MarkType[,] AsArray(this IGameBoard board)
         {
             var arr = new MarkType[board.RowsCount, board.ColsCount];

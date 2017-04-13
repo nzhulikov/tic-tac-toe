@@ -13,11 +13,18 @@ namespace TicTacToe.ViewModels
     using ObservableBoard = ObservableCollection<ObservableCollection<MarkType>>;
     using ObservableBoardColumn = ObservableCollection<MarkType>;
 
+    /// <summary>
+    /// Модель представления для игрового поля
+    /// </summary>
     public class GameBoardViewModel : ViewModelBase
     {
         private GameControlsViewModel gameControls;
 
         private ObservableBoard ticTacToeBoard;
+
+        /// <summary>
+        /// Игровое поле
+        /// </summary>
         public ObservableBoard TicTacToeBoard
         {
             get { return ticTacToeBoard; }
@@ -29,6 +36,10 @@ namespace TicTacToe.ViewModels
         }
 
         private GameState gameState;
+
+        /// <summary>
+        /// Состояние игры
+        /// </summary>
         public GameState GameState
         {
             get => gameState;
@@ -42,8 +53,15 @@ namespace TicTacToe.ViewModels
             }
         }
 
+        /// <summary>
+        /// Сделать ход
+        /// </summary>
         public ICommand MakeMoveCommand { get; private set; }
 
+        /// <summary>
+        /// Инициализация модели представления игрового поля
+        /// </summary>
+        /// <param name="gameControls">Модель представления управляющих компонентов</param>
         internal GameBoardViewModel(GameControlsViewModel gameControls)
         {
             MakeMoveCommand = new RelayCommand<DataTypes.CellPosition>(MakeMove);
@@ -54,44 +72,12 @@ namespace TicTacToe.ViewModels
             this.gameControls = gameControls;
             gameControls.GameEngine.BoardChanged += OnMoveCompleted;
             gameControls.PropertyChanged += OnGameStarted;
-
-            SetObservableData(gameControls.GameEngine.NewGame());
         }
 
-        private void MakeMove(DataTypes.CellPosition pos)
-        {
-            if (!TicTacToeBoard.Any())
-                return;
-
-            if (GameState == GameState.Playing && TicTacToeBoard[pos.Column][pos.Row] == MarkType.None)
-            {
-                PlayRequest request = new PlayRequest() {
-                    Board = ConvertObservableDataToArray(ticTacToeBoard),
-                    Row = pos.Row,
-                    Col = pos.Column };
-                PlayResponse response = gameControls.GameEngine.Play(request);
-                GameState = response.Result;
-            }
-        }
-
-        private void OnMoveCompleted(int row, int col, MarkType newMark)
-        {
-            TicTacToeBoard[col][row] = newMark;
-        }
-
-        private void OnGameStarted(object sender, PropertyChangedEventArgs e)
-        {
-            if (!e.PropertyName.Equals(nameof(GameControlsViewModel.GameStarted)))
-                return;
-
-            var currentControls = sender as GameControlsViewModel;
-            if (currentControls.GameStarted == true)
-            {
-                SetObservableData(gameControls.GameEngine.NewGame());
-                GameState = GameState.Playing;
-            }
-        }
-
+        /// <summary>
+        /// Инициализировать источник данных
+        /// </summary>
+        /// <param name="boardModel">Игровое поле</param>
         private void SetObservableData(IGameBoard boardModel)
         {
             TicTacToeBoard.Clear();
@@ -106,6 +92,11 @@ namespace TicTacToe.ViewModels
             }
         }
 
+        /// <summary>
+        /// Конвертировать источник данных в двумерный массив клеток
+        /// </summary>
+        /// <param name="observableData">Источник данных</param>
+        /// <returns>Двумерный массив клеток</returns>
         private MarkType[,] ConvertObservableDataToArray(ObservableBoard observableData)
         {
             var convertedData = new MarkType[observableData.Count, observableData.First().Count];
@@ -113,6 +104,59 @@ namespace TicTacToe.ViewModels
                 for (int i = 0; i < convertedData.GetLength(1); i++)
                     convertedData[j, i] = observableData[i][j];
             return convertedData;
+        }
+
+        /// <summary>
+        /// Сделать ход в указанной клетке
+        /// </summary>
+        /// <param name="pos">Положение клетки</param>
+        private void MakeMove(DataTypes.CellPosition pos)
+        {
+            if (!TicTacToeBoard.Any())
+                return;
+
+            if (GameState == GameState.Playing && TicTacToeBoard[pos.Column][pos.Row] == MarkType.None)
+            {
+                PlayRequest request = new PlayRequest()
+                {
+                    Board = ConvertObservableDataToArray(ticTacToeBoard),
+                    Row = pos.Row,
+                    Col = pos.Column
+                };
+                PlayResponse response = gameControls.GameEngine.Play(request);
+                GameState = response.Result;
+            }
+        }
+
+        /// <summary>
+        /// Обработчик совершенного хода
+        /// </summary>
+        /// <param name="row">Строка с новой меткой</param>
+        /// <param name="col">Столбец с новой меткой</param>
+        /// <param name="newMark"></param>
+        private void OnMoveCompleted(int row, int col, MarkType newMark)
+        {
+            TicTacToeBoard[col][row] = newMark;
+        }
+
+        /// <summary>
+        /// Обработчик старта игры
+        /// </summary>
+        private void OnGameStarted(object sender, PropertyChangedEventArgs e)
+        {
+            if (!e.PropertyName.Equals(nameof(GameControlsViewModel.GameStarted)))
+                return;
+
+            var emitterControls = sender as GameControlsViewModel;
+
+            if (emitterControls == null)
+                return;
+
+            if (emitterControls.GameStarted == true)
+            {
+                SetObservableData(gameControls.GameEngine.NewGame());
+                GameState = GameState.Playing;
+            }
         }
     }
 }

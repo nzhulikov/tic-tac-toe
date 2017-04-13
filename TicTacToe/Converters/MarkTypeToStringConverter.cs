@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Converters
 {
-    internal class MarkTypeConverter : IValueConverter
+    /// <summary>
+    /// Конвертер отметки клетки в её строковое представление.
+    /// Обратная операция не поддерживается.
+    /// </summary>
+    internal class MarkTypeToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter,
             System.Globalization.CultureInfo culture)
@@ -26,7 +26,7 @@ namespace TicTacToe.Converters
                     return String.Empty;
             }
         }
-
+        
         public object ConvertBack(object value, Type targetType, object parameter,
             System.Globalization.CultureInfo culture)
         {

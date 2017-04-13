@@ -4,9 +4,16 @@ using TicTacToe.Engine.Enums;
 
 namespace TicTacToe.Engine.VictoryValidators
 {
+    /// <summary>
+    /// Проверка комбинаций на поле размером 3х3 
+    /// согласно страндартным правилам игры "Крестики-Нолики"
+    /// </summary>
     public class StandardVictoryValidator : IVictoryValidator
     {
-        public int WinningCount { get; set; } = 3;
+        /// <summary>
+        /// Количество клеток в ряду для победы
+        /// </summary>
+        public int WinningCount { get; } = 3;
 
         public GameState Check(MarkType[,] board, MarkType checkMark)
         {

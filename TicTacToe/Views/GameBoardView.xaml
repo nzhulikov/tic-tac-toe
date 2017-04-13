@@ -10,9 +10,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <converters:CellPositionConverter x:Key="CellPositionConverter" />
-        <converters:GameStateConverter x:Key="GameStateConverter" />
-        <converters:MarkTypeConverter x:Key="MarkTypeConverter" />
+        <converters:CellGridInfoToPositionConverter x:Key="CellPositionConverter" />
+        <converters:GameStateToBooleanConverter x:Key="GameStateConverter" />
+        <converters:MarkTypeToStringConverter x:Key="MarkTypeConverter" />
 
         <Style TargetType="TextBlock" x:Key="TicTacToeCellStyle">
             <Setter Property="HorizontalAlignment" Value="Center" />

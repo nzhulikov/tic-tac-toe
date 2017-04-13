@@ -67,10 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
-    <Compile Include="Converters\CellPositionConverter.cs" />
+    <Compile Include="Converters\CellGridInfoToPositionConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
-    <Compile Include="Converters\MarkTypeConverter.cs" />
-    <Compile Include="Converters\GameStateConverter.cs" />
+    <Compile Include="Converters\MarkTypeToStringConverter.cs" />
+    <Compile Include="Converters\GameStateToBooleanConverter.cs" />
     <Compile Include="DataTypes\CellPosition.cs" />
     <Compile Include="Engine\Enums\GameState.cs" />
     <Compile Include="Engine\IGameEngine.cs" />

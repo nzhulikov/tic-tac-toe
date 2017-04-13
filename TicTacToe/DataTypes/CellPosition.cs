@@ -11,7 +11,14 @@ namespace TicTacToe.DataTypes
     /// </summary>
     public struct CellPosition
     {
+        /// <summary>
+        /// Строка
+        /// </summary>
         public int Row { get; set; }
+
+        /// <summary>
+        /// Столбец
+        /// </summary>
         public int Column { get; set; }
 
         public CellPosition(int row, int col)

@@ -6,14 +6,11 @@ using System.Windows.Data;
 namespace TicTacToe.Converters
 {
     /// <summary>
-    /// Конвертер данных о ячейке в виде (DataGridCellInfo, DataGrid) в положение соответствующей клетки на игровом поле
+    /// Конвертер данных о ячейке в виде (DataGridCellInfo, DataGrid) в значение CellPosition.
+    /// Обратное конвертирование не поддерживается.
     /// </summary>
-    internal class CellPositionConverter : IMultiValueConverter
+    internal class CellGridInfoToPositionConverter : IMultiValueConverter
     {
-        /// <summary>
-        /// Конвертировать (DataGridCellInfo, DataGrid) в CellPosition
-        /// </summary>
-        /// <returns>Положение клетки на игровом поле, соответствующей ячейке в сетке данных</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values != null && values.Length == 2)
@@ -29,14 +26,10 @@ namespace TicTacToe.Converters
 
             return null;
         }
-
-        /// <summary>
-        /// Обратное конвертирование не реализовано.
-        /// </summary>
-        /// <exception cref="NotImplementedException">Неподдерживаемая операция</exception>
+        
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
